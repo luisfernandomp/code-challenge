@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 
 namespace MinerTech.Domain
 {
-    public abstract class Minerio : BaseEntity
+    public class Minerio : BaseEntity
     {
         public string Codigo { get; set; }
         public string Caracteristica { get; set; }
         public decimal Preco { get; set; }
-        public ICollection<CargueiroMinerio> CargueirosMinerios { get; set; } 
-        public abstract decimal CalcularPreco(decimal peso);
+        public IList<RetornoCargueiro> RetornosCargueiro { get; set; } 
+        public IList<Cargueiro> Cargueiros { get; set; }
+        public IList<RetornoHistorico> RetornosHistorico { get; set; }
+        public virtual decimal CalcularPreco(decimal peso)
+        {
+            return 0M;
+        }
     }
 }

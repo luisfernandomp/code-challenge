@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerTech.Api", "MinerTech.Api\MinerTech.Api.csproj", "{FE639CC1-A196-4316-A105-424AA8E1047D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinerTech.Api", "MinerTech.Api\MinerTech.Api.csproj", "{FE639CC1-A196-4316-A105-424AA8E1047D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerTech.Domain", "MinerTech.Domain\MinerTech.Domain.csproj", "{7C7D23A0-9727-4A99-AB9B-3A85CAF7038A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinerTech.Domain", "MinerTech.Domain\MinerTech.Domain.csproj", "{7C7D23A0-9727-4A99-AB9B-3A85CAF7038A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerTech.Application", "MinerTech.Application\MinerTech.Application.csproj", "{DD04D706-8869-42CA-B873-89522878FB20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinerTech.Application", "MinerTech.Application\MinerTech.Application.csproj", "{DD04D706-8869-42CA-B873-89522878FB20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerTech.Infra", "MinerTech.Infra\MinerTech.Infra.csproj", "{A1E0079D-A7BB-418D-A46C-AE9D6A656FCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinerTech.Infra", "MinerTech.Infra\MinerTech.Infra.csproj", "{A1E0079D-A7BB-418D-A46C-AE9D6A656FCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerTech.JobCargaBase", "MinerTech.JobCargaBase\MinerTech.JobCargaBase.csproj", "{829C94B0-6744-4E17-B4A9-1365B0839C5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinerTech.JobCargaBase", "MinerTech.JobCargaBase\MinerTech.JobCargaBase.csproj", "{829C94B0-6744-4E17-B4A9-1365B0839C5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerTech.Infra.CrossCutting", "MinerTech.Infra.CrossCutting\MinerTech.Infra.CrossCutting.csproj", "{DF678308-9CD6-47B4-8F78-89FD301C8ABE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{829C94B0-6744-4E17-B4A9-1365B0839C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{829C94B0-6744-4E17-B4A9-1365B0839C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{829C94B0-6744-4E17-B4A9-1365B0839C5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF678308-9CD6-47B4-8F78-89FD301C8ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF678308-9CD6-47B4-8F78-89FD301C8ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF678308-9CD6-47B4-8F78-89FD301C8ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF678308-9CD6-47B4-8F78-89FD301C8ABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

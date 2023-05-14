@@ -33,9 +33,13 @@ namespace MinerTech.Infra.Mapping
                 .HasColumnType("datetime")
                 .IsRequired();
 
-            builder.HasOne(prop => prop.Retorno)
+            builder.HasOne(prop => prop.Minerio)
                 .WithMany(prop => prop.RetornosHistorico)
-                .HasForeignKey(prop => prop.RetornoId);
+                .HasForeignKey(prop => prop.MinerioId);
+
+            builder.HasOne(prop => prop.Cargueiro)
+                .WithMany(prop => prop.RetornosHistorico)
+                .HasForeignKey(prop => prop.CargueiroId);
 
             builder.HasOne(prop => prop.Usuario)
                 .WithMany(prop => prop.RetornosHistorico)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinerTech.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,15 @@ namespace MinerTech.Domain
 {
     public class CargueiroI : Cargueiro
     {
-        public override decimal AlocarMinerio(Minerio minerio)
+        public override void AlocarMinerio(Minerio minerio)
         {
-            throw new NotImplementedException();
-        }
+            if (minerio is not MinerioD)
+                return;
+
+            if(PesoMinerio < Capacidade)
+                CapacidadeOcupada += PesoMinerio - Capacidade;
+            
+            CapacidadeOcupada += PesoMinerio;
+        } 
     }
 }

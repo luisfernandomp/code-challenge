@@ -12,12 +12,14 @@ namespace MinerTech.Domain
         public string Descricao { get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
-        public ICollection<Cargueiro> Cargueiros { get; set; }
-        public void CadastrarClasse(string descricao)
+        public IList<Cargueiro> Cargueiros { get; set; }
+        public bool CadastrarClasse(string descricao)
         {
             Descricao = descricao;
             DataCadastro = DateTime.Now;
             Ativo = true;
+
+            return true;
         }
     }
 }

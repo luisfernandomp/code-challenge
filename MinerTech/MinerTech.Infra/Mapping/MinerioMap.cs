@@ -27,7 +27,12 @@ namespace MinerTech.Infra.Mapping
 
             builder.Property(prop => prop.Preco)
                 .HasColumnType("decimal(7,2)")
-                .IsRequired();
+                .IsRequired()
+                .HasPrecision(2);
+
+            builder.HasMany(prop => prop.Cargueiros)
+                .WithOne(prop => prop.Minerio)
+                .HasForeignKey(prop => prop.MinerioId);
 
         }
     }

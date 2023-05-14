@@ -12,17 +12,15 @@ namespace MinerTech.Domain
         public DateTime DataSaida { get; private set; }
         public DateTime? DataRetorno { get; private set; }
         public DateTime DataCadastro { get; private set; }
-        public int CargueiroId { get; set; }
-        public Cargueiro Cargueiro { get; set; }
+        public decimal Total { get; private set; }
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
-        public ICollection<RetornoHistorico> RetornosHistorico { get; set; }
+        public IList<RetornoCargueiro> RetornosCargueiro { get; set; }
+        public IList<RetornoHistorico> RetornosHistorico { get; set; }
         public void CadastrarRetorno(DateTime dataSaida,
-                                     DateTime dataRetorno,
-                                     Cargueiro cargueiro,
+                                     DateTime? dataRetorno,
                                      Usuario usuario)
         {
-            Cargueiro = cargueiro;
             DataSaida = dataSaida;
             DataRetorno = dataRetorno;
             DataCadastro = DateTime.Now;
@@ -31,17 +29,43 @@ namespace MinerTech.Domain
 
         public bool VerificarHorario()
         {
-            return false;
+            if(DataSaida.Hour < 8)
+                return false;
+
+            return true;
         }
 
         public bool VerificarDiaSemana()
         {
-            return false;
+            if(DateTime.Now.DayOfWeek == DayOfWeek.Sunday) 
+                return false;
+
+            return true;
+        }
+        
+        private void AlterarTotal(decimal total)
+        {
+            Total = total;
         }
 
-        public decimal CalcularTotalRecebimento()
+        public void CalcularTotalRecebimento()
         {
-            return 0;
+            decimal totalRecebimento = 0;
+
+            foreach (var item in RetornosCargueiro)
+            {
+                totalRecebimento += item.CalcularPrecoTotal();
+            }
+
+            AlterarTotal(totalRecebimento);
+        }
+
+        public void AlocarCargueiroMineiro()
+        {
+            foreach (var item in RetornosCargueiro)
+            {
+                item.AlocarMinerioCargueiro();
+            }
         }
     }
 }

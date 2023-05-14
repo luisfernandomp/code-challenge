@@ -7,22 +7,30 @@ using System.Threading.Tasks;
 
 namespace MinerTech.Domain
 {
-    public abstract class Cargueiro : BaseEntity
+    public class Cargueiro : BaseEntity
     {
-        public decimal Capacidade { get; private set; }
+        public decimal Capacidade { get; protected set; }
+        public decimal CapacidadeOcupada { get; protected set; }
+        public decimal PesoMinerio { get; set; }
         public int ClasseId { get; set; }
         public Classe Classe { get; set; }
-        public CargueiroMinerio CargueiroMineiro { get; set; }
+        public int MinerioId { get; set; }
+        public Minerio Minerio { get; set; }
         public CargueiroQuantidade CargueiroQuantidade { get; set; }
-        public ICollection<Retorno> Retornos { get; set; }
-        public ICollection<CargueiroMinerio> CargueirosMinerios { get; set; }
+        public IList<RetornoHistorico> RetornosHistorico { get; set; }
+        public IList<RetornoCargueiro> RetornosCargueiro { get; set; }
         public Cargueiro() { }
 
-        public bool VerificarCapacidade(decimal valor) 
+        public bool CapacidadeDisponivel(decimal valor) 
         {
-            return false;
+            if (valor > Capacidade) return false;
+
+            return true;
         }
 
-        public abstract decimal AlocarMinerio(Minerio minerio);
+        public virtual void AlocarMinerio(Minerio minerio)
+        {
+
+        }
     }
 }

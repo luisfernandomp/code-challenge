@@ -8,9 +8,15 @@ namespace MinerTech.Domain
 {
     public class CargueiroIV : Cargueiro
     {
-        public override decimal AlocarMinerio(Minerio minerio)
+        public override void AlocarMinerio(Minerio minerio)
         {
-            throw new NotImplementedException();
+            if (minerio is not MinerioB or MinerioC)
+                return;
+
+            if (PesoMinerio < Capacidade)
+                CapacidadeOcupada += PesoMinerio - Capacidade;
+
+            CapacidadeOcupada += PesoMinerio;
         }
     }
 }

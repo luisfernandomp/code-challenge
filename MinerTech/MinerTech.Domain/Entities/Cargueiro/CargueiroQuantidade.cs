@@ -12,10 +12,12 @@ namespace MinerTech.Domain
         public int Quantidade { get; private set; }
         public int CargueiroId { get; set; }
         public Cargueiro Cargueiro { get; set; }
+        
         public void CadastrarCargueiroQuantidade(int quantidade, Cargueiro cargueiro)
         {
             Quantidade = quantidade;
             Cargueiro = cargueiro;
         }
+
     }
 }

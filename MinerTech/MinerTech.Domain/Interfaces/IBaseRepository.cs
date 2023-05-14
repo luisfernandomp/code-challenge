@@ -12,8 +12,7 @@ namespace MinerTech.Domain.Interfaces
         void Insert(TEntity obj);
         void Update(TEntity obj);
         void Delete(int id);
-        IList<TEntity> GetAll();
-        IList<TEntity> FindAll(Func<TEntity> func);
+        IList<TEntity> Select();
         TEntity Select(int id);
     }
 }

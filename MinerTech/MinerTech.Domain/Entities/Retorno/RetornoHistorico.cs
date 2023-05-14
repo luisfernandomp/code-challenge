@@ -9,30 +9,30 @@ namespace MinerTech.Domain
 {
     public class RetornoHistorico : BaseEntity
     {
-        public void CadastrarHistorico
-            (
-            int quantidadeAtual,
-            int quantidade,
-            DateTime dateCadastro,
-            Retorno retorno,
-            Usuario usuario)
-        {
-            QuantidadeAnterior = 1;
-            QuantidadeAtual = quantidadeAtual;
-            Quantidade = quantidade;
-            DateCadastro = dateCadastro;
-            Retorno = retorno;
-            Usuario = usuario;
-        }
-
         public int QuantidadeAnterior { get; private set; }
         public int QuantidadeAtual { get; private set; }
         public int Quantidade { get; private set; }
         public DateTime DateCadastro { get; private set; }
-        public int RetornoId {get; set; }
-        public Retorno Retorno { get; set; }
+        public int CargueiroId {get; set; }
+        public Cargueiro Cargueiro { get; set; }
+        public int MinerioId { get; set; }
+        public Minerio Minerio { get; set; }
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
-   
+
+        public void CadastrarHistorico
+            (
+            int quantidadeAtual,
+            int quantidadeAnterior,
+            int quantidade,
+            Usuario usuario)
+        {
+            QuantidadeAnterior = quantidadeAnterior;
+            QuantidadeAtual = quantidadeAtual;
+            Quantidade = quantidade;
+            DateCadastro = DateTime.Now;
+            Usuario = usuario;
+        }
+
     }
 }

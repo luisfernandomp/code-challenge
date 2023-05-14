@@ -13,25 +13,10 @@ namespace MinerTech.Infra.Repository
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
         protected readonly MinerTechContext _context;
-        public BaseRepository(MinerTechContext context) 
-        {
-            _context = context;
-        }
 
-        public void Delete(int id)
+        public BaseRepository(MinerTechContext mySqlContext)
         {
-            _context.Set<TEntity>().Remove(Select(id));
-            _context.SaveChanges();
-        }
-
-        public IList<TEntity> FindAll(Func<TEntity> func)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<TEntity> GetAll()
-        {
-            throw new NotImplementedException();
+            _context = mySqlContext;
         }
 
         public void Insert(TEntity obj)
@@ -40,15 +25,23 @@ namespace MinerTech.Infra.Repository
             _context.SaveChanges();
         }
 
-        public TEntity Select(int id)
-        {
-            return _context.Set<TEntity>().SingleOrDefault(x => x.Id == id);
-        }
-
         public void Update(TEntity obj)
         {
-            _context.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified; 
+            _context.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public void Delete(int id)
+        {
+            _context.Set<TEntity>().Remove(Select(id));
+            _context.SaveChanges();
+        }
+
+        public IList<TEntity> Select() =>
+            _context.Set<TEntity>().ToList();
+
+        public TEntity Select(int id) =>
+            _context.Set<TEntity>().Find(id);
+
     }
 }
