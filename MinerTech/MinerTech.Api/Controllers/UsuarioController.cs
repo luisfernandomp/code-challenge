@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MinerTech.Domain;
+using MinerTech.Domain.Entities.Usuario.Dto;
 using MinerTech.Domain.Interfaces;
 
 namespace MinerTech.Api.Controllers
@@ -32,9 +33,10 @@ namespace MinerTech.Api.Controllers
 
         [HttpPatch]
         [Route("alterar-senha/{id}")]
-        public IActionResult AlterarSenha([FromBody] UsuarioDto usuario, [FromRoute] int id)
+        public async Task<IActionResult> AlterarSenha([FromBody] UsuarioSenhaDto dto, [FromRoute] int id)
         {
-            return Ok();
+            var response = await _usuarioService.AlterarSenha(id, dto.Senha);
+            return Ok(response);
         }
 
         [HttpPost]
@@ -46,9 +48,10 @@ namespace MinerTech.Api.Controllers
 
         [HttpPatch]
         [Route("inativar-usuario/{id}")]
-        public IActionResult Inativar(int id)
+        public async Task<IActionResult> Inativar(int id)
         {
-            return Ok();
+            var response = await _usuarioService.Inativar(id);
+            return Ok(response);
         }
     }
 }

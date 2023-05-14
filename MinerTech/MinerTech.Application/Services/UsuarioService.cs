@@ -17,16 +17,26 @@ namespace MinerTech.Application.Services
             base(baseRepository, notificationContext, mapper)
         { }
 
-        public async Task AlterarSenha(int id, string novaSenha)
+        public async Task<ResponseApi> AlterarSenha(int id, string novaSenha)
         {
-            throw new NotImplementedException();
+            var usuario = await GetById(id);
+
+            if(usuario == null)
+            {
+                _notificationContext.AddNotification("Usuário", "Não foi possível encontrar nenhum usuário com o Id informado");
+                return new ResponseApi();
+            }
+
+            usuario.AlterarSenha(Criptografar(novaSenha));
+
+            return new ResponseApi(true, "Senha alterada com sucesso!");
         }
 
         public async Task<ResponseApi> CadastrarUsuario(UsuarioDto dto)
         {
             var usuario = new Usuario(
                 dto.Email,
-                BCrypt.Net.BCrypt.HashPassword(dto.Senha), 
+                Criptografar(dto.Senha), 
                 dto.Nome);
 
             if (usuario.Invalid)
@@ -39,9 +49,19 @@ namespace MinerTech.Application.Services
             return new ResponseApi(true, "Usuário cadastrado com sucesso!");
         }
 
-        public async Task Inativar(int id)
+        public async Task<ResponseApi> Inativar(int id)
         {
-            throw new NotImplementedException();
+            var usuario = await GetById(id);
+
+            if (usuario == null)
+            {
+                _notificationContext.AddNotification("Usuário", "Não foi possível encontrar nenhum usuário com o Id informado");
+                return new ResponseApi();
+            }
+
+            usuario.InativarUsuario();
+
+            return new ResponseApi(true, "Usuário inativado com sucesso!");
         }
 
         public async Task<ResponseApi> ObterUsuarioPorId(int id)
@@ -65,6 +85,11 @@ namespace MinerTech.Application.Services
                         .ToList());
 
             return new ResponseApi(true, "", result);
+        }
+
+        public string Criptografar(string valor)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(valor);
         }
     }
 }

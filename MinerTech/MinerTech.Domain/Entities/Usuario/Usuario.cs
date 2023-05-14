@@ -21,6 +21,16 @@ namespace MinerTech.Domain
             Validate(this, new UsuarioValidator());
         }
 
+        public void AlterarSenha(string senha)
+        {
+            Senha = senha;
+        }
+
+        public void InativarUsuario()
+        {
+            Ativo = false;
+        }
+
         public string Email { get; private set; }
         public string Senha { get; private set; }
         public string Nome { get; private set; }

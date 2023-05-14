@@ -11,8 +11,9 @@ namespace MinerTech.Domain.Interfaces
     {
         Task<ResponseApi> ObterUsuarioPorId(int id);
         Task<ResponseApi> ObterUsuariosAtivos(int page, int pageSize);
-        Task AlterarSenha(int id, string novaSenha);
-        Task Inativar(int id);
+        Task<ResponseApi> AlterarSenha(int id, string novaSenha);
+        string Criptografar(string valor);
+        Task<ResponseApi> Inativar(int id);
         Task<ResponseApi> CadastrarUsuario(UsuarioDto usuario);
     }
 }

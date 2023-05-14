@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Newtonsoft.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MinerTech.Domain.Entities
 {
