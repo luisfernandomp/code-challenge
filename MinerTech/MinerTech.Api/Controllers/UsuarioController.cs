@@ -15,38 +15,40 @@ namespace MinerTech.Api.Controllers
         }
 
         [HttpGet]
-        [Route("id:int")]
-        public IActionResult ObterUsuarioPorId([FromQuery] int id)
+        [Route("{id}")]
+        public async Task<IActionResult> ObterUsuarioPorId(int id)
         {
-            return Ok("Olá mundo");
+            var response = await _usuarioService.ObterUsuarioPorId(id);
+            return Ok(response);
         }
 
         [HttpGet]
-        [Route("listar")]
-        public IActionResult ObterUsuariosAtivos()
+        [Route("listar-ativos")]
+        public async Task<IActionResult> ObterUsuariosAtivos([FromQuery] int page, [FromQuery] int itensPerPage)
         {
-            return Ok("Olá mundo");
+            var response = await _usuarioService.ObterUsuariosAtivos(page, itensPerPage);
+            return Ok(response);
         }
 
         [HttpPatch]
-        [Route("alterar-senha/id:int")]
-        public IActionResult AlterarSenha([FromBody] UsuarioDto usuario)
+        [Route("alterar-senha/{id}")]
+        public IActionResult AlterarSenha([FromBody] UsuarioDto usuario, [FromRoute] int id)
         {
-            return Ok("Olá mundo");
+            return Ok();
         }
 
         [HttpPost]
-        [Route("alterar-senha")]
-        public IActionResult CadastrarUsuario([FromBody] UsuarioDto usuario)
+        public async Task<IActionResult> CadastrarUsuario([FromBody] UsuarioDto dto)
         {
-            return Ok("Olá mundo");
+            var response = await _usuarioService.CadastrarUsuario(dto);
+            return Ok(response);
         }
 
         [HttpPatch]
-        [Route("inativar-usuario/id:int")]
-        public IActionResult Inativar([FromQuery] int id)
+        [Route("inativar-usuario/{id}")]
+        public IActionResult Inativar(int id)
         {
-            return Ok("Olá mundo");
+            return Ok();
         }
     }
 }

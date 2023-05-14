@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinerTech.Domain.Response;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,10 @@ namespace MinerTech.Domain.Interfaces
 {
     public interface IUsuarioService
     {
-        UsuarioDto ObterUsuarioPorId(int id);
-        List<UsuarioDto> ObterUsuariosAtivos();
-        void AlterarSenha(int id, string novaSenha);
-        void Inativar(int id);
+        Task<ResponseApi> ObterUsuarioPorId(int id);
+        Task<ResponseApi> ObterUsuariosAtivos(int page, int pageSize);
+        Task AlterarSenha(int id, string novaSenha);
+        Task Inativar(int id);
+        Task<ResponseApi> CadastrarUsuario(UsuarioDto usuario);
     }
 }

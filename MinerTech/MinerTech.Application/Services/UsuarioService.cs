@@ -1,46 +1,70 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using MinerTech.Application.Validators;
 using MinerTech.Domain;
+using MinerTech.Domain.Entities;
+using MinerTech.Domain.Entities.Usuario.Dto;
 using MinerTech.Domain.Interfaces;
-using MinerTech.Infra.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Dapper.SqlMapper;
+using MinerTech.Domain.Response;
 
 namespace MinerTech.Application.Services
 {
     public class UsuarioService : BaseService<Usuario>, IUsuarioService
     {
-        public UsuarioService(IBaseRepository<Usuario> baseRepository) : base(baseRepository)
-        {
-        }
+        public UsuarioService(IBaseRepository<Usuario> baseRepository,
+            NotificationContext notificationContext,
+            IMapper mapper) : 
+            base(baseRepository, notificationContext, mapper)
+        { }
 
-        
-
-        public void AlterarSenha(int id, string novaSenha)
-        {
-            base.Add<UsuarioValidator>(new Usuario());
-
-
-            throw new NotImplementedException();
-        }
-
-        public void Inativar(int id)
+        public async Task AlterarSenha(int id, string novaSenha)
         {
             throw new NotImplementedException();
         }
 
-        public UsuarioDto ObterUsuarioPorId(int id)
+        public async Task<ResponseApi> CadastrarUsuario(UsuarioDto dto)
+        {
+            var usuario = new Usuario(
+                dto.Email,
+                BCrypt.Net.BCrypt.HashPassword(dto.Senha), 
+                dto.Nome);
+
+            if (usuario.Invalid)
+            {
+                _notificationContext.AddNotifications(usuario.ValidationResult);
+                return new ResponseApi();
+            }
+
+            await Add(usuario);
+            return new ResponseApi(true, "Usuário cadastrado com sucesso!");
+        }
+
+        public async Task Inativar(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<UsuarioDto> ObterUsuariosAtivos()
+        public async Task<ResponseApi> ObterUsuarioPorId(int id)
         {
-            throw new NotImplementedException();
+            var result = await GetById(id);
+
+            var response = _mapper.Map<UsuarioResponseDto>(result);
+
+            return new ResponseApi(true, "", response);
+
+        }
+
+        public async Task<ResponseApi> ObterUsuariosAtivos(int page, int itensPerPage)
+        {
+            var result = await GetPaged(List().Where(u => u.Ativo), page, itensPerPage);
+
+            var response = result.Results.Select(_mapper.Map<UsuarioResponseDto>).ToList();
+
+            result.ToDto(response
+                        .Cast<object>()
+                        .ToList());
+
+            return new ResponseApi(true, "", result);
         }
     }
 }

@@ -4,6 +4,7 @@ using MinerTech.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace MinerTech.Infra.Mapping
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable("Usuario");
+            builder.ToTable("");
 
             builder.HasKey(prop => prop.Id);
 
@@ -27,6 +28,10 @@ namespace MinerTech.Infra.Mapping
             builder.Property(prop => prop.Email)
                 .IsRequired()
                 .HasColumnType("varchar(255)");
+
+            builder.Property(prop => prop.Nome)
+                .IsRequired()
+                .HasColumnType("varchar(300)");
 
             builder.Property(prop => prop.Senha)
                 .IsRequired()

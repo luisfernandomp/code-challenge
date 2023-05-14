@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MinerTech.Domain.Entities;
+using MinerTech.Domain.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace MinerTech.Domain.Interfaces
 {
     public interface IBaseService<TEntity> where TEntity : BaseEntity
     {
-        TEntity Add<TValidator>(TEntity obj) where TValidator : AbstractValidator<TEntity>;
-        void Delete(int id);
-        IList<TEntity> Get();
-        TEntity GetById(int id);
-        TEntity Update<TValidator>(TEntity obj) where TValidator : AbstractValidator<TEntity>;
+        Task<TEntity> Add(TEntity obj);
+        Task Delete(int id);
+        Task<IList<TEntity>> Get();
+        Task<TEntity> GetById(int id);
+        Task<TEntity> Update(TEntity obj);
+        IQueryable<TEntity> List();
+        Task<PagedResult> GetPaged(IQueryable<TEntity> query, int page, int pageSize);
     }
 }

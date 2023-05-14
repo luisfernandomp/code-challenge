@@ -1,4 +1,6 @@
-﻿using MinerTech.Domain;
+﻿using AutoMapper;
+using MinerTech.Domain;
+using MinerTech.Domain.Entities;
 using MinerTech.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,8 +12,10 @@ namespace MinerTech.Application.Services
 {
     public class ClasseService : BaseService<Classe>, IClasseService
     {
-        public ClasseService(IBaseRepository<Classe> baseRepository) : base(baseRepository)
-        {
-        }
+        public ClasseService(IBaseRepository<Classe> baseRepository,
+            NotificationContext notificationContext,
+            IMapper mapper) :
+            base(baseRepository, notificationContext, mapper)
+        { }
     }
 }

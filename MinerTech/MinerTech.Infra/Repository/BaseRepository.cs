@@ -1,12 +1,8 @@
-﻿using MinerTech.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using MinerTech.Domain.Entities;
 using MinerTech.Domain.Interfaces;
+using MinerTech.Domain.Response;
 using MinerTech.Infra.Context;
-using System;
-using System.Collections.Generic;
-using System.Formats.Tar;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinerTech.Infra.Repository
 {
@@ -19,29 +15,59 @@ namespace MinerTech.Infra.Repository
             _context = mySqlContext;
         }
 
-        public void Insert(TEntity obj)
+        public async Task Insert(TEntity obj)
         {
-            _context.Set<TEntity>().Add(obj);
-            _context.SaveChanges();
+            await _context.Set<TEntity>().AddAsync(obj);
+            await Save();
         }
 
-        public void Update(TEntity obj)
+        public async Task Update(TEntity obj)
         {
-            _context.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _context.SaveChanges();
+            _context.Entry(obj).State = EntityState.Modified;
+            await Save();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _context.Set<TEntity>().Remove(Select(id));
-            _context.SaveChanges();
+            _context.Set<TEntity>().Remove(await Select(id));
+            await Save();
         }
 
-        public IList<TEntity> Select() =>
-            _context.Set<TEntity>().ToList();
+        public async Task<IList<TEntity>> Select() =>
+            await _context.Set<TEntity>().ToListAsync();
 
-        public TEntity Select(int id) =>
-            _context.Set<TEntity>().Find(id);
+        public async Task<TEntity> Select(int id)
+        {
+            return await _context.Set<TEntity>().FindAsync(id);
+        }
 
+        public IQueryable<TEntity> List()
+        {
+            return _context.Set<TEntity>();
+        }
+
+        public async Task<PagedResult> GetPaged(IQueryable<TEntity> query, int page, int itensPerPage)
+        {
+            var result = new PagedResult();
+            result.CurrentPage = page;
+            result.ItensPerPage = itensPerPage;
+            result.RowCount = await query.CountAsync();
+
+
+            var pageCount = (double)result.RowCount / itensPerPage;
+            result.PageCount = (int)Math.Ceiling(pageCount);
+
+            var skip = (page - 1) * itensPerPage;
+            result.Results = query.Skip(skip).Take(itensPerPage)
+                .Cast<object>()
+                .ToList();
+
+            return result;
+        }
+
+        private async Task Save()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }
