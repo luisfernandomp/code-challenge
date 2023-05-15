@@ -15,6 +15,7 @@ namespace MinerTech.Domain
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
         public IList<Cargueiro> Cargueiros { get; set; }
+        public List<ClasseMinerioCompativel> ClasseMineriosCompativeis { get; set; }
 
         public Classe(string descricao, decimal capacidade)
         {
@@ -34,6 +35,11 @@ namespace MinerTech.Domain
         public void Inativar()
         {
             Ativo = false;
+        }
+
+        public void AssociarMineriosCompativeis(List<Minerio> minerios)
+        {
+            ClasseMineriosCompativeis.AddRange(minerios.Select(x => new ClasseMinerioCompativel(x, this)));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MinerTech.Domain;
 using MinerTech.Domain.Entities;
 using MinerTech.Domain.Entities.Cargueiro.Dtos;
@@ -10,12 +11,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace MinerTech.Application.Services
 {
     public class ClasseService : BaseService<Classe>, IClasseService
     {
+        private readonly IBaseRepository<Minerio> _minerioRepository;
         public ClasseService(IBaseRepository<Classe> baseRepository,
+            IBaseRepository<Minerio> minerioRepository,
             NotificationContext notificationContext,
             IMapper mapper) :
             base(baseRepository, notificationContext, mapper)
@@ -38,7 +42,10 @@ namespace MinerTech.Application.Services
 
         public async Task<ResponseApi> Cadastrar(ClasseDto dto)
         {
-            var classe = new Classe(dto.Descricao);
+            var classe = new Classe(dto.Descricao, dto.Capacidade);
+            var minerios = await ObterMinerios(dto.MineriosCompativeis);
+
+            classe.AssociarMineriosCompativeis(minerios);
 
             if (classe.Invalid)
             {
@@ -48,6 +55,14 @@ namespace MinerTech.Application.Services
 
             await Add(classe);
             return new ResponseApi(true, "Cadastrado com sucesso!");
+        }
+
+        public async Task<List<Minerio>> ObterMinerios(int[] ids)
+        {
+            return await _minerioRepository
+                .List()
+                .Where(x => ids.Any(y => y == x.Id))
+                .ToListAsync();
         }
 
         public async Task<ResponseApi> Inativar(int id)

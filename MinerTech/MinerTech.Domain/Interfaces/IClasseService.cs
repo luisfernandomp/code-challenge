@@ -16,5 +16,6 @@ namespace MinerTech.Domain.Interfaces
         Task<ResponseApi> Cadastrar(ClasseDto dto);
         Task<ResponseApi> Inativar(int id);
         Task<ResponseApi> AlterarDescricao(int id, string descricao);
+        Task<List<Minerio>> ObterMinerios(int[] ids);
     }
 }

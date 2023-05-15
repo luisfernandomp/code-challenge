@@ -20,6 +20,7 @@ namespace MinerTech.Domain
         public IList<RetornoCargueiro> RetornosCargueiro { get; set; } 
         public IList<Cargueiro> Cargueiros { get; set; }
         public IList<RetornoHistorico> RetornosHistorico { get; set; }
+        public IList<ClasseMinerioCompativel> ClasseMineriosCompativeis { get; set; }
 
         public virtual void CalcularPreco(decimal peso)
         { }
