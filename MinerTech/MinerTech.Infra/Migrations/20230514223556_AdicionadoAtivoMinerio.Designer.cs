@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MinerTech.Infra.Context;
 
@@ -11,9 +12,11 @@ using MinerTech.Infra.Context;
 namespace MinerTech.Infra.Migrations
 {
     [DbContext(typeof(MinerTechContext))]
-    partial class MinerTechContextModelSnapshot : ModelSnapshot
+    [Migration("20230514223556_AdicionadoAtivoMinerio")]
+    partial class AdicionadoAtivoMinerio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +32,9 @@ namespace MinerTech.Infra.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Capacidade")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("CapacidadeOcupada")
                         .HasColumnType("decimal(18,2)");
@@ -83,9 +89,6 @@ namespace MinerTech.Infra.Migrations
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
-
-                    b.Property<decimal>("Capacidade")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
@@ -268,13 +271,11 @@ namespace MinerTech.Infra.Migrations
                     b.HasOne("MinerTech.Domain.Classe", "Classe")
                         .WithMany("Cargueiros")
                         .HasForeignKey("ClasseId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MinerTech.Domain.Minerio", "Minerio")
                         .WithMany("Cargueiros")
                         .HasForeignKey("MinerioId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Classe");
@@ -287,7 +288,6 @@ namespace MinerTech.Infra.Migrations
                     b.HasOne("MinerTech.Domain.Cargueiro", "Cargueiro")
                         .WithOne("CargueiroQuantidade")
                         .HasForeignKey("MinerTech.Domain.CargueiroQuantidade", "CargueiroId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cargueiro");
@@ -298,7 +298,6 @@ namespace MinerTech.Infra.Migrations
                     b.HasOne("MinerTech.Domain.Usuario", "Usuario")
                         .WithMany("Retornos")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Usuario");
@@ -309,19 +308,16 @@ namespace MinerTech.Infra.Migrations
                     b.HasOne("MinerTech.Domain.Cargueiro", "Cargueiro")
                         .WithMany("RetornosCargueiro")
                         .HasForeignKey("CargueiroId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MinerTech.Domain.Minerio", "Minerio")
                         .WithMany("RetornosCargueiro")
                         .HasForeignKey("MinerioId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MinerTech.Domain.Retorno", null)
                         .WithMany("RetornosCargueiro")
-                        .HasForeignKey("RetornoId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("RetornoId");
 
                     b.Navigation("Cargueiro");
 
@@ -333,24 +329,20 @@ namespace MinerTech.Infra.Migrations
                     b.HasOne("MinerTech.Domain.Cargueiro", "Cargueiro")
                         .WithMany("RetornosHistorico")
                         .HasForeignKey("CargueiroId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MinerTech.Domain.Minerio", "Minerio")
                         .WithMany("RetornosHistorico")
                         .HasForeignKey("MinerioId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MinerTech.Domain.Retorno", null)
                         .WithMany("RetornosHistorico")
-                        .HasForeignKey("RetornoId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("RetornoId");
 
                     b.HasOne("MinerTech.Domain.Usuario", "Usuario")
                         .WithMany("RetornosHistorico")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cargueiro");

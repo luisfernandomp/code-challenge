@@ -13,8 +13,8 @@ namespace MinerTech.Domain
             if (minerio is not MinerioA)
                 return;
 
-            if (PesoMinerio < Capacidade)
-                CapacidadeOcupada += PesoMinerio - Capacidade;
+            if (PesoMinerio < Classe.Capacidade)
+                CapacidadeOcupada += PesoMinerio - Classe.Capacidade;
 
             CapacidadeOcupada += PesoMinerio;
         }

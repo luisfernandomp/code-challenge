@@ -9,8 +9,7 @@ namespace MinerTech.Domain
 {
     public class Cargueiro : BaseEntity
     {
-        public decimal Capacidade { get; protected set; }
-        public decimal CapacidadeOcupada { get; protected set; }
+        public decimal CapacidadeOcupada { get; set; }
         public decimal PesoMinerio { get; set; }
         public int ClasseId { get; set; }
         public Classe Classe { get; set; }
@@ -21,11 +20,9 @@ namespace MinerTech.Domain
         public IList<RetornoCargueiro> RetornosCargueiro { get; set; }
         public Cargueiro() { }
 
-        public bool CapacidadeDisponivel(decimal valor) 
+        public decimal CapacidadeDisponivel(decimal valor) 
         {
-            if (valor > Capacidade) return false;
-
-            return true;
+            return Classe.Capacidade - PesoMinerio;
         }
 
         public virtual void AlocarMinerio(Minerio minerio)

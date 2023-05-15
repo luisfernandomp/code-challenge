@@ -19,20 +19,15 @@ namespace MinerTech.Infra.Mapping
 
             builder.HasKey(prop => prop.Id);
 
-            builder.Property(prop => prop.Capacidade)
-                   .IsRequired()
-                   .HasColumnType("float")
-                   .HasPrecision(2);
-
-            builder.Property(prop => prop.CapacidadeOcupada)
-                .IsRequired()
-                .HasColumnType("float")
-                .HasPrecision(2);
-
             builder.Property(prop => prop.PesoMinerio)
                 .IsRequired()
                 .HasColumnType("float")
                 .HasPrecision(2);
+
+            builder.Property(prop => prop.CapacidadeOcupada)
+                   .IsRequired()
+                   .HasColumnType("float")
+                   .HasPrecision(2);
 
             builder.HasOne(prop => prop.Classe)
                 .WithMany(prop => prop.Cargueiros)

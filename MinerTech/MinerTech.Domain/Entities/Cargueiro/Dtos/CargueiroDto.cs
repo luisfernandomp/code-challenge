@@ -10,8 +10,6 @@ namespace MinerTech.Domain
     {
         public int ClasseId { get; set; }
         public int MinerioId { get; set; }
-        public decimal Capacidade { get; set; }
-        public decimal CapacidadeOcupada { get; set; }
         public decimal PesoMinerio { get; set; }
     }
 }

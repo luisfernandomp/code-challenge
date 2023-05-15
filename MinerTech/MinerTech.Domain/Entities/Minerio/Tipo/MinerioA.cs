@@ -11,11 +11,14 @@ namespace MinerTech.Domain
     {
         private const decimal _preco = 5000;
         private const int _prefix = 1000;
-        
 
-        public override decimal CalcularPreco(decimal peso)
+        public MinerioA(string codigo, string caracteristica) : base(codigo, caracteristica)
         {
-            return (_preco * peso) / _prefix;
+        }
+
+        public override void CalcularPreco(decimal peso)
+        {
+            Preco = (_preco * peso) / _prefix;
         }
     }
 }

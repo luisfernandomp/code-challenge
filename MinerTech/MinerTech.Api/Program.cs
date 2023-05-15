@@ -31,10 +31,12 @@ builder.Services.AddControllers(config =>
     config.Filters.Add<NotificationFilter>();
 });
 
-builder.Services.AddTransient<IUsuarioService, UsuarioService>();
-
 builder.Services.AddDbContext<MinerTechContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
+
+builder.Services.AddTransient<IUsuarioService, UsuarioService>();
+builder.Services.AddTransient<IMinerioService, MinerioService>();
+builder.Services.AddTransient<IClasseService, ClasseService>();
 
 var app = builder.Build();
 

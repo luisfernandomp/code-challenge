@@ -26,13 +26,26 @@ namespace MinerTech.Infra.Mapping
                 .IsRequired();
 
             builder.Property(prop => prop.Preco)
-                .HasColumnType("decimal(7,2)")
-                .IsRequired()
-                .HasPrecision(2);
+               .HasColumnType("decimal(7,2)")
+               .IsRequired()
+               .HasPrecision(2);
+
+            builder.Property(prop => prop.Ativo)
+                .HasColumnType("bit")
+                .IsRequired();
 
             builder.HasMany(prop => prop.Cargueiros)
                 .WithOne(prop => prop.Minerio)
                 .HasForeignKey(prop => prop.MinerioId);
+
+            builder.HasData(new
+            {
+                Codigo = "A",
+                Preco = 0M,
+                Caracteristica = "Inflamável",
+                DataCadastro = DateTime.Now,
+                Ativo = true
+            });
 
         }
     }

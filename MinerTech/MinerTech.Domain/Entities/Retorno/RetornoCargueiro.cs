@@ -17,13 +17,17 @@ namespace MinerTech.Domain
 
         public decimal CalcularPrecoTotal() 
         {
-            var minerio = new MinerioFactory().Constroi(Minerio.Codigo);
-            return minerio.CalcularPreco(Cargueiro.PesoMinerio);
+            var minerio = new MinerioFactory()
+                .Constroi(Minerio);
+
+            minerio.CalcularPreco(Cargueiro.PesoMinerio);
+
+            return minerio.Preco;
         }
 
         public void AlocarMinerioCargueiro()
         {
-            var cargueiro = new CargueiroFactory().Constroi(Cargueiro.Classe.Descricao);
+            var cargueiro = new CargueiroFactory().Constroi(Cargueiro);
             cargueiro.AlocarMinerio(Minerio);
         }
 

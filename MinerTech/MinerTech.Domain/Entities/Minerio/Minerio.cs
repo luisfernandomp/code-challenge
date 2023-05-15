@@ -1,23 +1,37 @@
 ﻿using MinerTech.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MinerTech.Domain.Validators;
 
 namespace MinerTech.Domain
 {
     public class Minerio : BaseEntity
     {
+        public Minerio(string codigo, string caracteristica)
+        {
+            Codigo = codigo;
+            Caracteristica = caracteristica;
+
+            Validate(this, new MinerioValidator());
+        }
+
         public string Codigo { get; set; }
-        public string Caracteristica { get; set; }
         public decimal Preco { get; set; }
+        public string Caracteristica { get; set; }
+        public bool Ativo { get; set; }
         public IList<RetornoCargueiro> RetornosCargueiro { get; set; } 
         public IList<Cargueiro> Cargueiros { get; set; }
         public IList<RetornoHistorico> RetornosHistorico { get; set; }
-        public virtual decimal CalcularPreco(decimal peso)
+
+        public virtual void CalcularPreco(decimal peso)
+        { }
+        
+        public void AlterarCaracteristica(string caracteristica)
         {
-            return 0M;
+            Caracteristica = caracteristica;
+        }
+
+        public void Inativar()
+        {
+            Ativo = false;
         }
     }
 }

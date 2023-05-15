@@ -8,6 +8,6 @@ namespace MinerTech.Domain.Factories
 {
     public abstract class AbstractFactoryMethod<T> where T : class
     {
-        public abstract T Constroi(string name);
+        public abstract T Constroi(T obj);
     }
 }

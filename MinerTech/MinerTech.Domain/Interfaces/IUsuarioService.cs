@@ -9,11 +9,11 @@ namespace MinerTech.Domain.Interfaces
 {
     public interface IUsuarioService
     {
-        Task<ResponseApi> ObterUsuarioPorId(int id);
-        Task<ResponseApi> ObterUsuariosAtivos(int page, int pageSize);
+        Task<ResponseApi> ObterPorId(int id);
+        Task<ResponseApi> ObterAtivos(int page, int pageSize);
         Task<ResponseApi> AlterarSenha(int id, string novaSenha);
         string Criptografar(string valor);
         Task<ResponseApi> Inativar(int id);
-        Task<ResponseApi> CadastrarUsuario(UsuarioDto usuario);
+        Task<ResponseApi> Cadastrar(UsuarioDto usuario);
     }
 }

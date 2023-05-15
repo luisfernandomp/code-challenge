@@ -25,6 +25,11 @@ namespace MinerTech.Infra.Mapping
                 .HasColumnType("datetime")
                 .IsRequired();
 
+            builder.Property(prop => prop.Capacidade)
+                   .IsRequired()
+                   .HasColumnType("float")
+                   .HasPrecision(2);
+
             builder.Property(prop => prop.Ativo)
                 .HasColumnType("bit")
                 .IsRequired();
@@ -32,6 +37,38 @@ namespace MinerTech.Infra.Mapping
             builder.HasMany(prop => prop.Cargueiros)
                 .WithOne(prop => prop.Classe)
                 .HasForeignKey(prop => prop.ClasseId);
+
+
+            builder.HasData(new {
+                Capacidade = 5,
+                Descricao = "I",
+                DataCadastro = DateTime.Now,
+                Ativo = true
+            });
+
+            builder.HasData(new
+            {
+                Capacidade = 3,
+                Descricao = "II",
+                DataCadastro = DateTime.Now,
+                Ativo = true
+            });
+
+            builder.HasData(new
+            {
+                Capacidade = 2,
+                Descricao = "III",
+                DataCadastro = DateTime.Now,
+                Ativo = true
+            });
+
+            builder.HasData(new
+            {
+                Capacidade = 0.5M,
+                Descricao = "IV",
+                DataCadastro = DateTime.Now,
+                Ativo = true
+            });
         }
     }
 }

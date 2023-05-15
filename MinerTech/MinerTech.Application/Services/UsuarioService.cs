@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using MinerTech.Application.Validators;
 using MinerTech.Domain;
 using MinerTech.Domain.Entities;
 using MinerTech.Domain.Entities.Usuario.Dto;
@@ -32,7 +31,7 @@ namespace MinerTech.Application.Services
             return new ResponseApi(true, "Senha alterada com sucesso!");
         }
 
-        public async Task<ResponseApi> CadastrarUsuario(UsuarioDto dto)
+        public async Task<ResponseApi> Cadastrar(UsuarioDto dto)
         {
             var usuario = new Usuario(
                 dto.Email,
@@ -46,7 +45,7 @@ namespace MinerTech.Application.Services
             }
 
             await Add(usuario);
-            return new ResponseApi(true, "Usuário cadastrado com sucesso!");
+            return new ResponseApi(true, "Cadastrado com sucesso!");
         }
 
         public async Task<ResponseApi> Inativar(int id)
@@ -61,10 +60,10 @@ namespace MinerTech.Application.Services
 
             usuario.InativarUsuario();
 
-            return new ResponseApi(true, "Usuário inativado com sucesso!");
+            return new ResponseApi(true, "Inativado com sucesso!");
         }
 
-        public async Task<ResponseApi> ObterUsuarioPorId(int id)
+        public async Task<ResponseApi> ObterPorId(int id)
         {
             var result = await GetById(id);
 
@@ -74,7 +73,7 @@ namespace MinerTech.Application.Services
 
         }
 
-        public async Task<ResponseApi> ObterUsuariosAtivos(int page, int itensPerPage)
+        public async Task<ResponseApi> ObterAtivos(int page, int itensPerPage)
         {
             var result = await GetPaged(List().Where(u => u.Ativo), page, itensPerPage);
 

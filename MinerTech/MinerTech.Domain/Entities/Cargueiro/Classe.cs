@@ -1,4 +1,5 @@
 ﻿using MinerTech.Domain.Entities;
+using MinerTech.Domain.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,30 @@ namespace MinerTech.Domain
 {
     public class Classe : BaseEntity
     {
+        public decimal Capacidade { get; set; }
         public string Descricao { get; set; }
         public DateTime DataCadastro { get; set; }
         public bool Ativo { get; set; }
         public IList<Cargueiro> Cargueiros { get; set; }
-        public bool CadastrarClasse(string descricao)
+
+        public Classe(string descricao, decimal capacidade)
         {
             Descricao = descricao;
+            Capacidade = capacidade;
             DataCadastro = DateTime.Now;
             Ativo = true;
 
-            return true;
+            Validate(this, new ClasseValidator());
+        }
+
+        public void AlterarDescricao(string nome)
+        {
+            Descricao = nome;
+        }
+
+        public void Inativar()
+        {
+            Ativo = false;
         }
     }
 }

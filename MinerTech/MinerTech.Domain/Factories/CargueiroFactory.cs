@@ -8,9 +8,9 @@ namespace MinerTech.Domain.Factories
 {
     public class CargueiroFactory : AbstractFactoryMethod<Cargueiro>
     {
-        public override Cargueiro Constroi(string name)
+        public override Cargueiro Constroi(Cargueiro cargueiro)
         {
-            switch (name)
+            switch (cargueiro.Classe.Descricao)
             {
                 case "I": return new CargueiroI();
                 case "II": return new CargueiroII();

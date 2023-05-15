@@ -8,13 +8,13 @@ namespace MinerTech.Domain.Factories
 {
     public class MinerioFactory : AbstractFactoryMethod<Minerio>
     {
-        public override Minerio Constroi(string name)
+        public override Minerio Constroi(Minerio minerio)
         {
-            switch (name)
+            switch (minerio.Codigo)
             {
-                case "A": return new MinerioA();
-                case "B": return new MinerioB();
-                case "C": return new MinerioC();
+                case "A": return new MinerioA(minerio.Codigo, minerio.Caracteristica);
+                case "B": return new MinerioB(minerio.Codigo, minerio.Caracteristica);
+                case "C": return new MinerioC(minerio.Codigo, minerio.Caracteristica);
                 default: throw new Exception("Não foi possível completar a operação!");
             }
         }

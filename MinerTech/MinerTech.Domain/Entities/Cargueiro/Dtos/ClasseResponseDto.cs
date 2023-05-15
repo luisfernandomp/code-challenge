@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace MinerTech.Domain.Entities.Cargueiro.Dtos
 {
-    public class ClasseDto
+    public class ClasseResponseDto
     {
         public string Descricao { get; set; }
         public decimal Capacidade { get; set; }
+        public DateTime DataCadastro { get; set; }
+        public bool Ativo { get; set; }
     }
 }
