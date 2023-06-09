@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinerTech.Domain.Entities.Cargueiro.Dtos
+namespace MinerTech.Domain.Entities.Classes.Dtos
 {
-    public class ClasseResponseDto
+    public class ClasseDto
     {
         public string Descricao { get; set; }
         public decimal Capacidade { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public bool Ativo { get; set; }
+        public int[] MineriosCompativeis { get; set; }
     }
 }

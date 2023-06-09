@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinerTech.Domain.Entities.Minerios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

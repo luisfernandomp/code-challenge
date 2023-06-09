@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinerTech.Domain
+namespace MinerTech.Domain.Entities.Minerios
 {
     public class MinerioC : Minerio
     {
@@ -17,7 +17,7 @@ namespace MinerTech.Domain
 
         public override void CalcularPreco(decimal peso)
         {
-            Preco = (_preco * peso) / _prefix;
+            AlterarPreco((_preco * peso) / _prefix);
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MinerTech.Domain;
+using MinerTech.Domain.Entities.Cargueiros;
+using MinerTech.Domain.Entities.Classes;
+using MinerTech.Domain.Entities.Minerios;
 using MinerTech.Infra.Mapping;
 
 namespace MinerTech.Infra.Context
@@ -14,7 +17,6 @@ namespace MinerTech.Infra.Context
         public DbSet<CargueiroQuantidade> CargueirosQuantidade { get; set; }
         public DbSet<Classe> Classes { get; set; }
         public DbSet<Minerio> Minerios { get; set; }
-        public DbSet<ClasseMinerioCompativel> ClasseMineriosCompativeis { get; set; }
         public DbSet<RetornoCargueiro> CargueirosMinerios { get; set; }
         public DbSet<RetornoHistorico> RetornosHistorico { get; set; }
         public DbSet<Retorno> Retornos { get; set;}

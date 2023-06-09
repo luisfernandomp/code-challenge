@@ -30,7 +30,7 @@ namespace MinerTech.Infra.Mapping
 
             builder.Property(prop => prop.Total)
                .IsRequired()
-               .HasColumnType("float")
+               .HasColumnType("decimal(18,4)")
                .HasPrecision(2);
 
             builder.HasOne(prop => prop.Usuario)

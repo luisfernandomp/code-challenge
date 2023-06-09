@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MinerTech.Domain.Interfaces;
-using MinerTech.Domain.Entities.Cargueiro.Dtos;
+using MinerTech.Domain.Entities.Classes.Dtos;
 
 namespace MinerTech.Api.Controllers
 {

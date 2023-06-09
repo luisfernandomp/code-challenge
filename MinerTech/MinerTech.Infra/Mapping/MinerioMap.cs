@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MinerTech.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MinerTech.Domain.Entities.Minerios;
 
 namespace MinerTech.Infra.Mapping
 {
@@ -26,7 +22,7 @@ namespace MinerTech.Infra.Mapping
                 .IsRequired();
 
             builder.Property(prop => prop.Preco)
-               .HasColumnType("decimal(7,2)")
+                .HasColumnType("decimal(18,4)")
                .IsRequired()
                .HasPrecision(2);
 

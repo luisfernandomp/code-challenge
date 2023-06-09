@@ -1,10 +1,7 @@
 ﻿using MinerTech.Domain.Entities;
+using MinerTech.Domain.Entities.Cargueiros;
+using MinerTech.Domain.Entities.Minerios;
 using MinerTech.Domain.Factories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinerTech.Domain
 {
@@ -20,15 +17,15 @@ namespace MinerTech.Domain
             var minerio = new MinerioFactory()
                 .Constroi(Minerio);
 
-            minerio.CalcularPreco(Cargueiro.PesoMinerio);
+            //nerio.CalcularPreco(Cargueiro.PesoMinerio);
 
             return minerio.Preco;
         }
 
         public void AlocarMinerioCargueiro()
         {
-            var cargueiro = new CargueiroFactory().Constroi(Cargueiro);
-            cargueiro.AlocarMinerio(Minerio);
+            //var cargueiro = new CargueiroFactory().Constroi(Cargueiro);
+            //cargueiro.AlocarMinerio(Minerio);
         }
 
     }

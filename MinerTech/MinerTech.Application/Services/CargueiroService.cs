@@ -2,6 +2,7 @@
 using FluentValidation;
 using MinerTech.Domain;
 using MinerTech.Domain.Entities;
+using MinerTech.Domain.Entities.Cargueiros;
 using MinerTech.Domain.Interfaces;
 using System;
 using System.Collections.Generic;

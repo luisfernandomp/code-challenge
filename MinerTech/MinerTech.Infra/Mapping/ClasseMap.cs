@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MinerTech.Domain;
+using MinerTech.Domain.Entities.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace MinerTech.Infra.Mapping
 
             builder.Property(prop => prop.Capacidade)
                    .IsRequired()
-                   .HasColumnType("float")
+                   .HasColumnType("decimal(18,4)")
                    .HasPrecision(2);
 
             builder.Property(prop => prop.Ativo)

@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
 using MinerTech.Domain;
-using MinerTech.Domain.Entities.Minerio.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MinerTech.Domain.Entities.Minerios;
+using MinerTech.Domain.Entities.Minerios.Dtos;
 
 namespace MinerTech.Infra.Profiles
 {

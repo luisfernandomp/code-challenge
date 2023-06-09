@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MinerTech.Application.Services;
 using MinerTech.Domain;
-using MinerTech.Domain.Entities.Cargueiro.Dtos;
+using MinerTech.Domain.Entities.Cargueiros.Dtos;
 using MinerTech.Domain.Interfaces;
 
 namespace MinerTech.Api.Controllers

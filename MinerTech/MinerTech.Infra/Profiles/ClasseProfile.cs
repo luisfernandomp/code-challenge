@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MinerTech.Domain;
-using MinerTech.Domain.Entities.Cargueiro.Dtos;
+using MinerTech.Domain.Entities.Classes;
+using MinerTech.Domain.Entities.Classes.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

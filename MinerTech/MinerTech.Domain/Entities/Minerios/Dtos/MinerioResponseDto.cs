@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinerTech.Domain.Entities.Minerio.Dtos
+namespace MinerTech.Domain.Entities.Minerios.Dtos
 {
     public class MinerioResponseDto
     {

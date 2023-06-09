@@ -1,13 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MinerTech.Domain;
-using MinerTech.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
+using MinerTech.Domain.Entities.Cargueiros;
+
 
 namespace MinerTech.Infra.Mapping
 {
@@ -19,14 +13,9 @@ namespace MinerTech.Infra.Mapping
 
             builder.HasKey(prop => prop.Id);
 
-            builder.Property(prop => prop.PesoMinerio)
-                .IsRequired()
-                .HasColumnType("float")
-                .HasPrecision(2);
-
             builder.Property(prop => prop.CapacidadeOcupada)
                    .IsRequired()
-                   .HasColumnType("float")
+                   .HasColumnType("decimal(18,4)")
                    .HasPrecision(2);
 
             builder.HasOne(prop => prop.Classe)

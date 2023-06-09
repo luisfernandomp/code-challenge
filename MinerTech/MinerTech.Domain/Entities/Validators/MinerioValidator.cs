@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MinerTech.Domain;
+using MinerTech.Domain.Entities.Minerios;
 
 namespace MinerTech.Domain.Validators
 {

@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using MinerTech.Domain;
 using MinerTech.Domain.Entities;
-using MinerTech.Domain.Entities.Minerio.Dtos;
+using MinerTech.Domain.Entities.Minerios;
+using MinerTech.Domain.Entities.Minerios.Dtos;
 using MinerTech.Domain.Interfaces;
 using MinerTech.Domain.Response;
 

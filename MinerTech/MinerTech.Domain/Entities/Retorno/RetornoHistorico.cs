@@ -1,4 +1,6 @@
 ﻿using MinerTech.Domain.Entities;
+using MinerTech.Domain.Entities.Cargueiros;
+using MinerTech.Domain.Entities.Minerios;
 using System;
 using System.Collections.Generic;
 using System.Linq;

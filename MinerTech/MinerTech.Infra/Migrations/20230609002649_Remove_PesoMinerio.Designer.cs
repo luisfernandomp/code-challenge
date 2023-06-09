@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MinerTech.Infra.Context;
 
@@ -11,9 +12,11 @@ using MinerTech.Infra.Context;
 namespace MinerTech.Infra.Migrations
 {
     [DbContext(typeof(MinerTechContext))]
-    partial class MinerTechContextModelSnapshot : ModelSnapshot
+    [Migration("20230609002649_Remove_PesoMinerio")]
+    partial class Remove_PesoMinerio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +48,7 @@ namespace MinerTech.Infra.Migrations
 
                     b.HasIndex("MinerioId");
 
-                    b.ToTable("Cargueiros", (string)null);
+                    b.ToTable("Cargueiros");
                 });
 
             modelBuilder.Entity("MinerTech.Domain.Entities.Cargueiros.CargueiroQuantidade", b =>
@@ -67,7 +70,7 @@ namespace MinerTech.Infra.Migrations
                     b.HasIndex("CargueiroId")
                         .IsUnique();
 
-                    b.ToTable("CargueirosQuantidade", (string)null);
+                    b.ToTable("CargueirosQuantidade");
                 });
 
             modelBuilder.Entity("MinerTech.Domain.Entities.Classes.Classe", b =>
@@ -98,7 +101,7 @@ namespace MinerTech.Infra.Migrations
 
                     b.HasIndex("MinerioId");
 
-                    b.ToTable("Classes", (string)null);
+                    b.ToTable("Classes");
                 });
 
             modelBuilder.Entity("MinerTech.Domain.Entities.Minerios.Minerio", b =>
@@ -125,7 +128,7 @@ namespace MinerTech.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Minerios", (string)null);
+                    b.ToTable("Minerios");
                 });
 
             modelBuilder.Entity("MinerTech.Domain.Retorno", b =>
@@ -155,7 +158,7 @@ namespace MinerTech.Infra.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Retornos", (string)null);
+                    b.ToTable("Retornos");
                 });
 
             modelBuilder.Entity("MinerTech.Domain.RetornoCargueiro", b =>
@@ -186,7 +189,7 @@ namespace MinerTech.Infra.Migrations
 
                     b.HasIndex("RetornoId");
 
-                    b.ToTable("CargueirosMinerios", (string)null);
+                    b.ToTable("CargueirosMinerios");
                 });
 
             modelBuilder.Entity("MinerTech.Domain.RetornoHistorico", b =>
@@ -231,7 +234,7 @@ namespace MinerTech.Infra.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("RetornosHistorico", (string)null);
+                    b.ToTable("RetornosHistorico");
                 });
 
             modelBuilder.Entity("MinerTech.Domain.Usuario", b =>
@@ -262,7 +265,7 @@ namespace MinerTech.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuarios", (string)null);
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("MinerTech.Domain.Entities.Cargueiros.Cargueiro", b =>

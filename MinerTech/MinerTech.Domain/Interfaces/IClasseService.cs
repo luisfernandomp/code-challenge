@@ -1,4 +1,5 @@
-﻿using MinerTech.Domain.Entities.Cargueiro.Dtos;
+﻿using MinerTech.Domain.Entities.Classes.Dtos;
+using MinerTech.Domain.Entities.Minerios;
 using MinerTech.Domain.Response;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,4 @@
-﻿using MinerTech.Domain.Entities.Cargueiro.Dtos;
-using MinerTech.Domain.Response;
+﻿using MinerTech.Domain.Response;
 
 namespace MinerTech.Domain.Interfaces
 {

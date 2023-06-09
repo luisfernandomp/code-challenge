@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using MinerTech.Domain;
 using MinerTech.Domain.Entities;
-using MinerTech.Domain.Entities.Cargueiro.Dtos;
+using MinerTech.Domain.Entities.Classes;
+using MinerTech.Domain.Entities.Classes.Dtos;
+using MinerTech.Domain.Entities.Minerios;
 using MinerTech.Domain.Entities.Usuario.Dto;
 using MinerTech.Domain.Interfaces;
 using MinerTech.Domain.Response;
@@ -42,10 +44,10 @@ namespace MinerTech.Application.Services
 
         public async Task<ResponseApi> Cadastrar(ClasseDto dto)
         {
-            var classe = new Classe(dto.Descricao, dto.Capacidade);
+            var classe = new Classe(dto.Descricao);
             var minerios = await ObterMinerios(dto.MineriosCompativeis);
 
-            classe.AssociarMineriosCompativeis(minerios);
+            //classe.AssociarMineriosCompativeis(minerios);
 
             if (classe.Invalid)
             {
